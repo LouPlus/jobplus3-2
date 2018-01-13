@@ -1,6 +1,7 @@
 from flask import Flask, render_template
 from jobplus.config import configs  # 传入configs字典
 from jobplus.models import db
+from flask_migrate import Migrate
 
 def create_app(config):
     """APP工厂
@@ -19,3 +20,4 @@ def register_blueprints(app):
 
 def register_extensions(app):
     db.init_app(app)
+    Migrate(app, db)
