@@ -1,5 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
+from werkzeug.security import generate_password_hash, check_password_hash
 
 db = SQLAlchemy()
 
@@ -73,7 +74,8 @@ class Job(Base):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(128), index=True, nullable=False)
-    salary = db.Column(db.String(32))
+    salary_low = db.Column(db.Integer, nullable=False)
+    salary_high = db.Column(db.Integer, nullable=False)
     experience = db.Column(db.String(32))
     location = db.Column(db.String(32))
     description = db.Column(db.Text)

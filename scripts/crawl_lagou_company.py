@@ -52,12 +52,14 @@ def parse_one_page(data):
 
 def save_to_file(json_data):
     with open('company_detail.json', 'a') as f:
-        f.write(json.dumps(json_data)+'\n')
+        f.write(json.dumps(json_data)+',')
 
 
 def main():
     url = 'https://www.lagou.com/gongsi/80-0-0.json'
     count = 1
+    with open('company_detail.json', 'a') as f:
+        f.write('[')
     while count < 11:
         print('第%d批公司，抓取中...' % count)
         data = get_one_page(url, count)
@@ -65,6 +67,8 @@ def main():
             save_to_file(company)
         count += 1
         time.sleep(1)
+    with open('company_detail.json', 'a') as f:
+        f.write(']')
     print('抓取成功')
 
 
