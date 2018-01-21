@@ -78,6 +78,9 @@ class Job(Base):
     location = db.Column(db.String(32))
     description = db.Column(db.Text)
     requirements = db.Column(db.Text)
+    company_id = db.Column(db.Integer, db.ForeignKey('company.id', ondelete='CASCADE'))
+    #公司与职位是一对多的关系，uselist设置为False
+    company = db.relationship('Company', uselist=False)
 
     def __repr__(self):
         return '<Job:{}>'.format(self.name)
