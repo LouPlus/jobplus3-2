@@ -1,5 +1,6 @@
 import os
 import json
+from jobplus.models import User, Company
 from faker import Factory
 
 # 本地化fake
@@ -7,7 +8,7 @@ fake = Factory.create('zh_CN')
 
 def iter_company_user():
 	yield User(
-			
+
 		)
 
 

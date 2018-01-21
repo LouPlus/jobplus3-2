@@ -96,7 +96,9 @@ class Company(Base):
     field = db.Column(db.String(32))
     financeStage = db.Column(db.String(32))
     description = db.Column(db.Text)
-    user = db.relationship('User', uselist=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id', ondelete='SET NULL'))
+    # 一对一关系，双向都设置uselist为False
+    user = db.relationship('User', uselist=False, backref=db.backref('company', uselist=False))
 
     def __repr__(self):
         return '<Company:{}>'.format(self.name)
